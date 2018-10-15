@@ -3,15 +3,12 @@ package cz.muni.fi.pa165.currency;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
-import javax.inject.Named;
-
 
 /**
  * This is base implementation of {@link CurrencyConvertor}.
  *
  * @author petr.adamek@embedit.cz
  */
-@Named("CurrencyConvertorAnnotation")
 public class CurrencyConvertorImpl implements CurrencyConvertor {
 
     private final ExchangeRateTable exchangeRateTable;
