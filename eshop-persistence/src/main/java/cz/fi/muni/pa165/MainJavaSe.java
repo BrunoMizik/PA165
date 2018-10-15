@@ -27,7 +27,7 @@ public class MainJavaSe {
 		emf = Persistence.createEntityManagerFactory("default");
 		try {
 			// BEGIN YOUR CODE
-			task04();
+			task05();
 			// END YOUR CODE
 		} finally {
 			emf.close();
@@ -42,8 +42,21 @@ public class MainJavaSe {
 		// Then you have to start transaction using getTransaction().begin()
 		// Then use persist() to persist both of the categories and finally commit the transaction
 
-		// The code below is just testing code. Do not modify it
 		EntityManager em = emf.createEntityManager();
+
+		em.getTransaction().begin();
+
+		Category electronicsCategory = new Category();
+		electronicsCategory.setName("Electronics");
+
+		Category musicalCategory = new Category();
+		musicalCategory.setName("Musical");
+		em.persist(electronicsCategory);
+		em.persist(musicalCategory);
+
+		em.getTransaction().commit();
+
+		// The code below is just testing code. Do not modify it
 		em.getTransaction().begin();
 		List<Category> categories = em.createQuery(
 				"select c from Category c order by c.name", Category.class)
@@ -56,6 +69,7 @@ public class MainJavaSe {
 		assertEq(categories.get(1).getName(), "Musical");
 
 		em.getTransaction().commit();
+
 		em.close();
 
 		System.out.println("Succesfully found Electronics and Musical!");
@@ -69,6 +83,16 @@ public class MainJavaSe {
 		em.persist(category);
 		em.getTransaction().commit();
 		em.close();
+
+		EntityManager em2 = emf.createEntityManager();
+		em2.getTransaction().begin();
+
+		category = em2.merge(category);
+		category.setName("Electro");
+		em2.getTransaction().commit();
+
+		em2.close();
+
 
 		// TODO under this line. create new entity manager and start new transaction. Merge
 		// the detached category
@@ -99,6 +123,16 @@ public class MainJavaSe {
 		//
 		// Additional task: Change the underlying table of Product entity to be ESHOP_PRODUCTS. After you do this, check this by inspecting console output (the CREATE TABLE statement)
 		//
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Product product = new Product();
+		product.setName("Guitar");
+		product.setColor(Color.BLACK);
+
+		em.persist(category);
+		em.getTransaction().commit();
+		em.close();
+
 
 /** TODO uncoment all the code below after you finish the TODO's
 
