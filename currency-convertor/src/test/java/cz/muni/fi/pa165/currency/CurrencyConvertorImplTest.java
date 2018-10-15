@@ -1,7 +1,17 @@
 package cz.muni.fi.pa165.currency;
 
+import java.math.BigDecimal;
+import java.util.Currency;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import static org.mockito.Mockito.*;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class CurrencyConvertorImplTest {
