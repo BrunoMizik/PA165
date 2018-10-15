@@ -15,7 +15,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan("cz.muni.fi.pa165.logger")
 public class JavaConfig {
 
     @Bean

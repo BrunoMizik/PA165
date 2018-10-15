@@ -11,9 +11,9 @@ import java.util.Currency;
 public class MainAnnotations {
 
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext("cz.muni.fi.pa165");
+        ApplicationContext context = new AnnotationConfigApplicationContext("cz.muni.fi.pa165.currency");
 
-        CurrencyConvertor currencyConvertor = context.getBean("CurrencyConvertorAnotation", CurrencyConvertor.class);
+        CurrencyConvertor currencyConvertor = context.getBean("CurrencyConvertorAnnotation", CurrencyConvertor.class);
         BigDecimal returnedValue = currencyConvertor.convert(Currency.getInstance("EUR"), Currency.getInstance("CZK"), BigDecimal.ONE);
         if (!returnedValue.equals(new BigDecimal("27.00"))){
             throw new IllegalStateException("Incorrect value returned");

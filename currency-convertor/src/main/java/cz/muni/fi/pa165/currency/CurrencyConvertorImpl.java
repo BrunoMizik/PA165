@@ -4,16 +4,21 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
 
+import javax.inject.Named;
+import javax.inject.Inject;
+
 /**
  * This is base implementation of {@link CurrencyConvertor}.
  *
  * @author petr.adamek@embedit.cz
  */
+@Named("CurrencyConvertorAnnotation")
 public class CurrencyConvertorImpl implements CurrencyConvertor {
 
     private final ExchangeRateTable exchangeRateTable;
     //private final Logger logger = LoggerFactory.getLogger(CurrencyConvertorImpl.class);
 
+    @Inject
     public CurrencyConvertorImpl(ExchangeRateTable exchangeRateTable) {
         this.exchangeRateTable = exchangeRateTable;
     }
