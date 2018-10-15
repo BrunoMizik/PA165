@@ -15,21 +15,17 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @EnableAspectJAutoProxy
+@ComponentScan("cz.muni.fi.pa165.logger")
 public class JavaConfig {
 
-    @Bean
-    public PerformanceMonitorInterceptor performanceMonitorInterceptor() {
-        return new PerformanceMonitorInterceptor(true);
-    }
-
     @Bean(name = "ExchangeRateTableJAVA")
-    public ExchangeRateTable ExchangeRateTable(){
+    public ExchangeRateTable exchangeRateTable(){
         return new ExchangeRateTableImpl();
     }
 
     @Bean(name = "CurrencyConvertorJAVA")
-    public CurrencyConvertor CurrencyConvertor(){
-        return new CurrencyConvertorImpl(new ExchangeRateTableImpl());
+    public CurrencyConvertor currencyConvertor(ExchangeRateTable exchangeRateTable){
+        return new CurrencyConvertorImpl(exchangeRateTable);
     }
 
 }
