@@ -34,7 +34,9 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@ManyToMany(mappedBy = "categories")
+	private Set<Category> categories = new HashSet<>();;
 
 	@Lob
 	private byte[] image;
@@ -74,25 +76,26 @@ public class Product {
 	 * with TASK 02 you should delete this empty method
 	 * @param kitchen
 	 */
-	public void addCategory(Category kitchen) {	
-	}
-	public List<Product> getCategories() {
-		return null;
-	}
-	//TODO after you are done with task02 you can uncomment this methods
-//	public void removeCategory(Category category)	{
-//		this.categories.remove(category);
-//	}
-//	
-//	public void addCategory(Category c) {
-//		categories.add(c);
-//		c.addProduct(this);
-//	}
-//
-//	public Set<Category> getCategories() {
-//		return Collections.unmodifiableSet(categories);
-//	}
 
+
+	//TODO after you are done with task02 you can uncomment this methods
+	public void removeCategory(Category category)	{
+		this.categories.remove(category);
+	}
+
+	public void addCategory(Category c) {
+		categories.add(c);
+		c.addProduct(this);
+	}
+
+	public Set<Category> getCategories() {
+		return Collections.unmodifiableSet(categories);
+	}
+
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
+	}
 
 	public LocalDate getAddedDate() {
 		return addedDate;
