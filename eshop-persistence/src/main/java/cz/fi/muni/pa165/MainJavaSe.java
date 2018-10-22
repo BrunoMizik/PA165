@@ -58,8 +58,21 @@ public class MainJavaSe {
 		em2.close();
 
 
-		// The code below is just testing code. Do not modify it
 		EntityManager em = emf.createEntityManager();
+
+		em.getTransaction().begin();
+
+		Category electronicsCategory = new Category();
+		electronicsCategory.setName("Electronics");
+
+		Category musicalCategory = new Category();
+		musicalCategory.setName("Musical");
+		em.persist(electronicsCategory);
+		em.persist(musicalCategory);
+
+		em.getTransaction().commit();
+
+		// The code below is just testing code. Do not modify it
 		em.getTransaction().begin();
 		List<Category> categories = em.createQuery(
 				"select c from Category c order by c.name", Category.class)
@@ -72,6 +85,7 @@ public class MainJavaSe {
 		assertEq(categories.get(1).getName(), "Musical");
 
 		em.getTransaction().commit();
+
 		em.close();
 
 		System.out.println("Succesfully found Electronics and Musical!");

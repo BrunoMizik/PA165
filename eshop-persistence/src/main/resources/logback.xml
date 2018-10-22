@@ -16,5 +16,4 @@
     <logger name="org.springframework" level="WARN"/>
     <logger name="org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl" level="ERROR"/>
     <logger name="org.hibernate.SQL" level="DEBUG"/>
-
 </configuration>

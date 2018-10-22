@@ -4,23 +4,20 @@ package cz.fi.muni.pa165.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
-//@Table(name = "ESHOP PRODUCT")
 public class Product {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @Column(nullable=false,unique=true)
     private String name;
 
-    @Enumerated
+    @Enumerated()
     private Color color;
+
 
     private LocalDate addedDate;
 
