@@ -15,12 +15,7 @@ public class Category {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(
-			name = "Category_Product",
-			joinColumns = { @JoinColumn(name = "category_id") },
-			inverseJoinColumns = { @JoinColumn(name = "product_id") }
-	)
+	@ManyToMany
 	private Set<Product> products = new HashSet<>();
 
 	@NotNull

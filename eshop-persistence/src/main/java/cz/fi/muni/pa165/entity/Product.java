@@ -35,7 +35,7 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToMany(mappedBy = "categories")
+	@ManyToMany(mappedBy = "products")
 	private Set<Category> categories = new HashSet<>();;
 
 	@Lob
@@ -43,7 +43,7 @@ public class Product {
 
 	private String imageMimeType;
 	
-
+ 	@NotNull
 	private String name;
 	
 	/*

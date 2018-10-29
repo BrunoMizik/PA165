@@ -68,15 +68,29 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 		product3 = prod3;
 	}
 
+	@Test(expectedExceptions=ConstraintViolationException.class)
+	public void testDoesntSaveNullName(){
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+
+		Product product = new Product();
+		product.setName(null);
+
+		em.persist(product);
+
+		em.getTransaction().commit();
+		em.close();
+	}
+
 	@Test
 	public void electroTest() {
 		EntityManager em = emf.createEntityManager();
 		Category cat = em.find(Category.class, electro.getId());
 
-		em.close();
-
 		assertContainsProductWithName(cat.getProducts(), "Flashlight");
 		assertContainsProductWithName(cat.getProducts(), "Kitchen robot");
+
+		em.close();
 	}
 
 	@Test
@@ -84,10 +98,10 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 		EntityManager em = emf.createEntityManager();
 		Category cat = em.find(Category.class, kitchen.getId());
 
-		em.close();
-
 		assertContainsProductWithName(cat.getProducts(), "Plate");
 		assertContainsProductWithName(cat.getProducts(), "Kitchen robot");
+
+		em.close();
 	}
 
 	@Test
@@ -95,9 +109,10 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 		EntityManager em = emf.createEntityManager();
 		Product prod = em.find(Product.class, product1.getId());
 
+		assertContainsCategoryWithName(prod.getCategories(), "Kitchen");
+
 		em.close();
 
-		assertContainsCategoryWithName(prod.getCategories(), "Kitchen");
 	}
 
 	@Test
@@ -105,9 +120,10 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 		EntityManager em = emf.createEntityManager();
 		Product prod = em.find(Product.class, product2.getId());
 
+		assertContainsCategoryWithName(prod.getCategories(), "Electro");
+
 		em.close();
 
-		assertContainsCategoryWithName(prod.getCategories(), "Electro");
 	}
 
 	@Test
@@ -115,10 +131,10 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 		EntityManager em = emf.createEntityManager();
 		Product prod = em.find(Product.class, product3.getId());
 
-		em.close();
-
 		assertContainsCategoryWithName(prod.getCategories(), "Kitchen");
 		assertContainsCategoryWithName(prod.getCategories(), "Electro");
+
+		em.close();
 	}
 
 
